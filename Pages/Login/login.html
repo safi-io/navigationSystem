@@ -1,38 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Login - Hospital Navigation</title>
-  <link rel="stylesheet" href="login.css" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
-    rel="stylesheet"
-  />
-</head>
-<body>
-  <div class="login-container">
-    <div class="login-box">
-      <h2 class="title">Navigation System Login</h2>
-      <input
-        type="text"
-        id="username"
-        placeholder="Username"
-        autocomplete="off"
-        spellcheck="false"
-      />
-      <input
-        type="password"
-        id="password"
-        placeholder="Password"
-        autocomplete="off"
-      />
-      <button id="loginBtn">Log In</button>
-      <p id="loginMessage" class="login-message"></p>
-      <p>Sample Username: safi</p>
-      <p>Sample Password: safipass</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login - Hospital Navigation</title>
+    <link rel="stylesheet" href="login.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .welcome-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+      }
+
+      .welcome-modal {
+        background: #fff;
+        padding: 30px 40px;
+        border-radius: 12px;
+        max-width: 500px;
+        text-align: center;
+        font-family: "Inter", sans-serif;
+        position: relative;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        animation: fadeIn 0.3s ease-in-out;
+      }
+
+      .welcome-modal h2 {
+        margin-bottom: 16px;
+        font-size: 24px;
+      }
+
+      .welcome-modal p {
+        font-size: 16px;
+        color: #444;
+        margin-bottom: 20px;
+      }
+
+      .close-welcome {
+        position: absolute;
+        top: 10px;
+        right: 14px;
+        background: none;
+        border: none;
+        font-size: 22px;
+        cursor: pointer;
+        color: #888;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="welcome-overlay" id="welcomeOverlay">
+      <div class="welcome-modal">
+        <button class="close-welcome" onclick="closeWelcomeModal()">×</button>
+        <h2>📘 About This Project</h2>
+        <p>
+          This is a
+          <strong>4th Semester Data Structures Project</strong> developed for
+          educational purposes. The aim is to demonstrate how fundamental data
+          structures can be integrated into real-world applications. The system
+          simulates hospital navigation using algorithms and data structures
+          studied in coursework.
+        </p>
+
+        <table style="width: 100%; border-collapse: collapse; margin-top: 1rem">
+          <thead>
+            <tr style="background-color: #f2f2f2">
+              <th style="border: 1px solid #ccc; padding: 10px">
+                🔢 Data Structure
+              </th>
+              <th style="border: 1px solid #ccc; padding: 10px">📌 Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 10px">
+                <strong>Dijkstra’s Algorithm</strong>
+              </td>
+              <td style="border: 1px solid #ccc; padding: 10px">
+                Calculates the shortest path between hospital points (e.g., from
+                OPD to Emergency).
+              </td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 10px">
+                <strong>Stack</strong>
+              </td>
+              <td style="border: 1px solid #ccc; padding: 10px">
+                Manages navigation history; allows you to view previously
+                visited locations.
+              </td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 10px">
+                <strong>Set</strong>
+              </td>
+              <td style="border: 1px solid #ccc; padding: 10px">
+                Tracks unique visited nodes to avoid duplicates in the visited
+                list.
+              </td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 10px">
+                <strong>Hash Map</strong>
+              </td>
+              <td style="border: 1px solid #ccc; padding: 10px">
+                Handles user authentication (username-password validation).
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p style="margin-top: 1rem">
+          Built with ❤️ by
+          <strong><a href="https://github.com/safi-io" target="_blank">Safi Khan</a></strong>
+          — showcasing how theoretical concepts in data structures can power
+          functional and interactive web applications.
+        </p>
+      </div>
     </div>
-  </div>
-  <script src="login.js" type="module"></script>
-</body>
+
+    <div class="login-container">
+      <div class="login-box">
+        <h2 class="title">Navigation System Login</h2>
+        <input
+          type="text"
+          id="username"
+          placeholder="Username"
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <input
+          type="password"
+          id="password"
+          placeholder="Password"
+          autocomplete="off"
+        />
+        <button id="loginBtn">Log In</button>
+        <p id="loginMessage" class="login-message"></p>
+        <p>Sample Username: safi</p>
+        <p>Sample Password: safipass</p>
+      </div>
+    </div>
+
+    <script src="login.js" type="module"></script>
+    <script>
+      function closeWelcomeModal() {
+        document.getElementById("welcomeOverlay").style.display = "none";
+      }
+    </script>
+  </body>
 </html>

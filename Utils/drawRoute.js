@@ -28,7 +28,7 @@ export function drawRoute(
     return [lat, lon];
   });
 
-  routeLine = L.polyline(pathCoords, { color: "blue" }).addTo(map);
+  routeLine = L.polyline(pathCoords, { color: "yellow" }).addTo(map);
   map.fitBounds(routeLine.getBounds());
 
   const distance = result.distance; // in meters
@@ -42,11 +42,9 @@ export function drawRoute(
     `Shortest Distance: ${distance.toFixed(2)} meters<br>` +
     `Estimated Walking Time: ${minutes} min ${seconds} sec`;
 
-  // ✅ Get the visible labels (text) from the select options
   const startLabel = startSel.options[startSel.selectedIndex].text;
   const endLabel = endSel.options[endSel.selectedIndex].text;
 
-  // ✅ Record to history (if you have a function for it)
   recordVisit(startLabel, endLabel);
   visitedSetInstance.insert(endLabel);
 
