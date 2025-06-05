@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hospital Navigation System</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <button
+      id="visitedBtn"
+      class="visited-button"
+      onclick="showVisitedLocations()"
+    >
+      Visited Locations
+    </button>
+
+    <!-- Visited Locations Overlay -->
+    <div
+      id="visitedOverlay"
+      class="visited-history-overlay hidden"
+      role="dialog"
+      aria-modal="true"
+      tabindex="-1"
+    >
+      <div class="history-header">
+        <h3>Visited Locations</h3>
+        <div class="history-buttons">
+          <!-- Close button now calls visitedSetInstance.close() -->
+          <button
+            id="closeVisitedBtn"
+            class="close-btn"
+            title="Close"
+            aria-label="Close visited locations overlay"
+          >
+            &times;
+          </button>
+        </div>
+      </div>
+      <ul id="visitedList" class="history-list"></ul>
+    </div>
+
+    <button id="logoutBtn" class="logout-button" onclick="logout()">
+      Logout
+    </button>
+
+    <button id="historyBtn" class="history-button">View History</button>
+
+    <div id="historyOverlay" class="history-overlay hidden">
+      <div class="history-header">
+        <h3>Visited Locations</h3>
+        <div class="history-buttons">
+          <button
+            id="popVisitBtn"
+            class="pop-btn"
+            title="Remove Last Visit"
+            onclick="popLastVisit()"
+          >
+            Pop Last
+          </button>
+          <button
+            id="closeHistoryBtn"
+            class="close-btn"
+            title="Close"
+            aria-label="Close history overlay"
+          >
+            &times;
+          </button>
+        </div>
+      </div>
+      <ul id="historyList" class="history-list"></ul>
+    </div>
+
+    <div class="bg-particles">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+    </div>
+
+    <div class="container">
+      <header class="header">
+        <div class="header-icon">
+          <i class="fas fa-hospital"></i>
+        </div>
+        <h1>Allied Hospital Faisalabad Navigation</h1>
+        <p class="subtitle">Find your way through the hospital with ease</p>
+      </header>
+
+      <div class="navigation-panel">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="start" class="form-label">
+              <i class="fas fa-map-marker-alt"></i>
+              Starting Point
+            </label>
+            <div class="select-wrapper">
+              <select id="start" aria-label="Select starting location">
+                <option value="">Choose starting location...</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="end" class="form-label">
+              <i class="fas fa-flag-checkered"></i>
+              Destination
+            </label>
+            <div class="select-wrapper">
+              <select id="end" aria-label="Select destination">
+                <option value="">Choose destination...</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <button class="clearBtn" id="clearBtn">Clear Data</button>
+      </div>
+
+      <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p>Calculating optimal route...</p>
+      </div>
+
+      <div class="map-container">
+        <div
+          id="map"
+          role="application"
+          aria-label="Hospital navigation map"
+        ></div>
+      </div>
+
+      <div class="distance-panel">
+        <div class="distance-icon">
+          <i class="fas fa-route"></i>
+        </div>
+        <div id="distance">
+          Select starting point and destination to see route information
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>
+        &copy; 2025 Allied Hospital Navigation — Built by
+        <a
+          href="https://safikhan.me"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-link"
+          >safikhan.me</a
+        >
+      </p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/@turf/turf/turf.min.js"></script>
+
+    <!-- Your main app JS, as a module -->
+    <script type="module" src="script.js"></script>
+
+    <script>
+      // Simple logout redirect
+      function logout() {
+        window.location.href = "../Login/login.html";
+      }
+
+      // Close history overlay
+      function closeHistory() {
+        document.getElementById("historyOverlay").classList.add("hidden");
+      }
+
+      // Close history button wiring
+      document
+        .getElementById("closeHistoryBtn")
+        .addEventListener("click", closeHistory);
+    </script>
+
+    <!-- Import your Stack and Set structures if needed -->
+    <script type="module" src="../../StructuresAlgorithms/Stack.js"></script>
+    <script type="module" src="../../StructuresAlgorithms/Set.js"></script>
+  </body>
+</html>
