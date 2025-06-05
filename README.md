@@ -84,10 +84,14 @@ _Data Structures – 4th Semester Project_
 
 ## 📷 Screenshots
 
-![Map Navigation](./screenshots/navigation.png)
-![Route History](./screenshots/route-history.png)
-![Visited History](./screenshots/visited-history.png)
-![Login Page](./screenshots/login.png)
+## Main Navigation Map
+![Map Navigation](./Screenshots/navigation.png)
+## Route History
+![Route History](./Screenshots/route-history.png)
+## Visited Locations
+![Visited History](./Screenshots/visited-history.png)
+## Login Page
+![Login Page](./Screenshots/login.png)
 
 ---
 
