@@ -51,16 +51,15 @@ export class VisitedSet {
   }
 }
 
-// Export singleton instance
 export const visitedSetInstance = new VisitedSet(
   "visitedOverlay",
   "visitedList"
 );
 
-// Expose global functions for your HTML buttons
 window.showVisitedLocations = () => {
   visitedSetInstance.open();
 };
+
 window.closeVisitedLocations = () => {
   visitedSetInstance.close();
 };
